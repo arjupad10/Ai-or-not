@@ -11,8 +11,8 @@
         }
         h1{
             font-size:50px;
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            color:orangered;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color:paleturquoise;
         }
         body{
             background-color: darkgray;
@@ -21,22 +21,48 @@
             border-radius:20px;
             scale:0.75;
         }
+        .green-border {
+            border-color: lightgreen;
+        }
+        .red-border {
+            border-color: palevioletred;
+        }
         a{
             height:40px;
             width:200px;
             font-size:50px;
         }
+        button{
+            margin:20px;
+        }
+        p{
+            font-size:30px;
+        }
+        img{
+            width: 700px;
+            height:auto;
+        }
+        video{
+            width:700px;
+            height:auto;
+            border-radius:20px;
+        }
     </style>
 </head>
 <body>
-    <h1><b><u>Round 1.</u></b></h1>
-    <img src="static/ai1.png">
+    <h1><b><u>Round {{round}}.</u></b></h1>
+    {% if '.mp4' in img %}
+    <video src='{{ img }}' autoplay muted loop controls></video>
+    {% else %}
+    <img src='{{ img }}'>
+    {% endif %}
     <form action="/game" method="post">
-        <button type="submit" name="real" value="Real">This is Real</button>
-        <p>{{message}}</p>
-        <button type="submit" name="fake" value="AI">This is AI</button>
+        <button type="submit" name="real" class="btn btn-light" value="Real">This is Real</button>
+        
+        <button type="submit" name="fake" class="btn btn-light" value="AI">This is AI</button>
     </form>
-    <h1>{{Ans}}</h1>
+
+    <p>{{message}}</p>
 
 </body>
 </html>
