@@ -21,8 +21,10 @@
             border-radius:20px;
             scale:0.75;
         }
-        .green-border {
+        #green-border1 {
             border-color: lightgreen;
+            border-width:5px;
+            border-style:solid;
         }
         .red-border {
             border-color: palevioletred;
@@ -47,6 +49,10 @@
             height:auto;
             border-radius:20px;
         }
+
+        #next{
+            width:100px;
+        }
     </style>
 </head>
 <body>
@@ -57,10 +63,17 @@
     <img src='{{ img }}'>
     {% endif %}
     <form action="/game" method="post">
+        {% if message == 'Correct' and Ans==True %}
+        <button type="submit" id='green-border1' name="real" class="btn btn-light" value="Real">This is Real</button>
+        {% else %}
         <button type="submit" name="real" class="btn btn-light" value="Real">This is Real</button>
+        {% endif %}
         
         <button type="submit" name="fake" class="btn btn-light" value="AI">This is AI</button>
+
     </form>
+
+    <a href="/game"><button type="submit" name="next" class="btn btn-dark" value="next" id="next">Next</button></a>
 
     <p>{{message}}</p>
 

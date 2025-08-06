@@ -8,7 +8,7 @@ images=['static/ai1.png','static/real1.png','static/ai2.png','static/real2.png',
 answers=[False,True,False,True,False,True,False,True,False,True]
 roundList=[1,2,3,4,5,6,7,8,9,10]
 
-i=0
+i=-1
 
 @app.route('/game', methods=['POST',"GET"])
 def game():
@@ -21,22 +21,22 @@ def game():
         if 'real' in request.form:
             print('test')
             if answers[i]==True:
-                i+=1
-                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct.' )
+                #i+=1
+                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct' )
             else:
-                i+=1
+                #i+=1
                 return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message ='Incorrect' )
             
         elif 'fake' in request.form:
             if answers[i]==False:
-                i+=1
-                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct.' )
+                #i+=1
+                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct' )
             else:
-                i+=1
+                #i+=1
                 return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message ='Incorrect' )
     
-        
-    return render_template('game.html',round=roundList[i],img=images[i], message = ' ')
+    i+=1    
+    return render_template('game.html',Ans = answers[i], round=roundList[i],img=images[i], message = ' ')
 
 
 @app.route('/')
