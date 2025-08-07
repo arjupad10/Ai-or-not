@@ -49,9 +49,13 @@ def game():
 
 @app.route('/')
 def index():
+    global score
+    score=0
     return render_template('index.html')
 
-
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 
 if __name__=='__main__':
