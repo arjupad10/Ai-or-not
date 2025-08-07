@@ -7,19 +7,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <style>
         *{
+            position:relative;
             text-align:center
         }
+        body{
+            background-color:darkgray;
+            background:url('static/lebron2.png');
+        }
         h1{
+            position:relative;
             font-size:50px;
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            color:paleturquoise;
-        }
-        body{
-            background-color: darkgray;
+            color:darkslategrey;
+            background-color:rgba(255, 255, 255, 0.466);
+            z-index:2;
         }
         img{
             border-radius:20px;
-            scale:0.75;
         }
         #green-border1 {
             border-color: lightgreen;
@@ -59,48 +63,44 @@
             padding-right: 15vw;
         }
         #scores{
-            background:rgba(173, 216, 230, 0.327);
+            background:rgba(2, 148, 197, 0.668);
             width: 150px;
             border-radius:15px;
             
         }
+      
     </style>
 </head>
 <body>
     <h1><b><u>Round {{round}}</u></b></h1>
-    <div class="score">
-        <p id="scores"><b>Score: {{score}}</b></p>
-    </div>
-    {% if '.mp4' in img %}
-    <video src='{{ img }}' autoplay loop controls></video>
-    {% else %}
-    <img src='{{ img }}'>
-    {% endif %}
-    <p>{{message}}</p>
-    <form action="/game" method="post">
-        {% if message == 'Correct' and Ans==True %}
-        <button type="submit" id='green-border1' name="real" class="btn btn-light" value="Real">This is Real</button>
-        {% elif message == 'Incorrect' and Ans==False %}
-        <button type="submit" name="real" id='red-border1' class="btn btn-light" value="Real">This is Real</button>
+        <div class="score">
+            <p id="scores"><b>Score: {{score}}</b></p>
+        </div>
+        {% if '.mp4' in img %}
+        <video src='{{ img }}' autoplay loop controls></video>
         {% else %}
-        <button type="submit" name="real" class="btn btn-light" value="Real">This is Real</button>
+        <img src='{{ img }}'>
         {% endif %}
-        
+        <p>{{message}}</p>
+        <form action="/game" method="post">
+            {% if message == 'Correct' and Ans==True %}
+            <button type="submit" id='green-border1' name="real" class="btn btn-light" value="Real">This is Real</button>
+            {% elif message == 'Incorrect' and Ans==False %}
+            <button type="submit" name="real" id='red-border1' class="btn btn-light" value="Real">This is Real</button>
+            {% else %}
+            <button type="submit" name="real" class="btn btn-light" value="Real">This is Real</button>
+            {% endif %}
+            {% if message == 'Correct' and Ans==False %}
+            <button type="submit" name="fake" id="green-border1" class="btn btn-light" value="AI">This is AI</button>
+            {% elif message == 'Incorrect' and Ans==True %}
+            <button type="submit" name="fake" id="red-border1" class="btn btn-light" value="AI">This is AI</button>
+            {% else %}
+            <button type="submit" name="fake" class="btn btn-light" value="AI">This is AI</button>
+            {% endif %}
+        </form>
+        <a href="/game"><button type="submit" name="next" class="btn btn-dark" value="next" id="next">Next</button></a>
 
-
-
-        {% if message == 'Correct' and Ans==False %}
-        <button type="submit" name="fake" id="green-border1" class="btn btn-light" value="AI">This is AI</button>
-        {% elif message == 'Incorrect' and Ans==True %}
-        <button type="submit" name="fake" id="red-border1" class="btn btn-light" value="AI">This is AI</button>
-        {% else %}
-        <button type="submit" name="fake" class="btn btn-light" value="AI">This is AI</button>
-        {% endif %}
-
-    </form>
-
-    <a href="/game"><button type="submit" name="next" class="btn btn-dark" value="next" id="next">Next</button></a>
-
-
+    
 </body>
+
 </html>
