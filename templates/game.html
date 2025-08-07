@@ -81,7 +81,6 @@
         {% else %}
         <img src='{{ img }}'>
         {% endif %}
-        <p>{{message}}</p>
         <form action="/game" method="post">
             {% if message == 'Correct' and Ans==True %}
             <button type="submit" id='green-border1' name="real" class="btn btn-light" value="Real">This is Real</button>
