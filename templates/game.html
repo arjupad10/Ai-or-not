@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBA or Cap</title>
+    <title>NBA or Shams</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <style>
         *{
@@ -24,10 +24,10 @@
         #green-border1 {
             border-color: lightgreen;
             border-width:5px;
-            border-style:solid;
         }
-        .red-border {
+        #red-border1 {
             border-color: palevioletred;
+            border-width:5px;
         }
         a{
             height:40px;
@@ -53,29 +53,55 @@
         #next{
             width:100px;
         }
+        .score{
+            display:flex;
+            justify-content: flex-end;
+            align-items:flex-end;
+            padding-right: 15vw;
+        }
+        #scores{
+            background:rgba(173, 216, 230, 0.327);
+            width: 150px;
+            border-radius:15px;
+            
+        }
     </style>
 </head>
 <body>
     <h1><b><u>Round {{round}}.</u></b></h1>
+    <div class="score">
+        <p id="scores"><b>Score: {{score}}</b></p>
+    </div>
     {% if '.mp4' in img %}
-    <video src='{{ img }}' autoplay muted loop controls></video>
+    <video src='{{ img }}' autoplay loop controls></video>
     {% else %}
     <img src='{{ img }}'>
     {% endif %}
+    <p>{{message}}</p>
     <form action="/game" method="post">
         {% if message == 'Correct' and Ans==True %}
         <button type="submit" id='green-border1' name="real" class="btn btn-light" value="Real">This is Real</button>
+        {% elif message == 'Incorrect' and Ans==False %}
+        <button type="submit" name="real" id='red-border1' class="btn btn-light" value="Real">This is Real</button>
         {% else %}
         <button type="submit" name="real" class="btn btn-light" value="Real">This is Real</button>
         {% endif %}
         
+
+
+
+        {% if message == 'Correct' and Ans==False %}
+        <button type="submit" name="fake" id="green-border1" class="btn btn-light" value="AI">This is AI</button>
+        {% elif message == 'Incorrect' and Ans==True %}
+        <button type="submit" name="fake" id="red-border1" class="btn btn-light" value="AI">This is AI</button>
+        {% else %}
         <button type="submit" name="fake" class="btn btn-light" value="AI">This is AI</button>
+        {% endif %}
 
     </form>
 
     <a href="/game"><button type="submit" name="next" class="btn btn-dark" value="next" id="next">Next</button></a>
 
-    <p>{{message}}</p>
 
 </body>
 </html>

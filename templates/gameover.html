@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBA or Shams</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <style>
         *{
             text-align:center
@@ -26,14 +26,24 @@
             width:200px;
             font-size:50px;
         }
+        button{
+            margin:20px;
+        }
+        p{
+            font-size:30px;
+        }
+        img{
+            width: 700px;
+            height:auto;
+        }
+        
+        
     </style>
 </head>
 <body>
-    <h1><u><b>NBA or Shams</b></u></h1><br>
-    <h2>Can you tell the difference between real and AI?</h2><br>
-    <a class="btn btn-light" href="/game" role="button">Play</a><br>
-    <img src="https://npr.brightspotcdn.com/dims3/default/strip/false/crop/3000x1688+0+0/resize/1100/quality/50/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F0d%2Fee%2F6d41cc264e0bb590b21f7b22d35c%2F16x9.jpg">
-    
-
+    <h1><u><b>Game Over.</b></u></h1>
+    <p>Your final score is: {{score}}</p>
+    <a href="/" class="btn btn-dark">Play Again</a>
+    <a href="/" class="btn btn-dark">About</a>
 </body>
 </html>

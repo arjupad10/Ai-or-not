@@ -9,10 +9,11 @@ answers=[False,True,False,True,False,True,False,True,False,True]
 roundList=[1,2,3,4,5,6,7,8,9,10]
 
 i=-1
-
+score=0
 @app.route('/game', methods=['POST',"GET"])
 def game():
     global i
+    global score
     print("game")
     if request.method == 'POST':
         print('PO')
@@ -21,22 +22,29 @@ def game():
         if 'real' in request.form:
             print('test')
             if answers[i]==True:
-                #i+=1
-                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct' )
+            #i+=1
+                score+=1
+                return render_template('game.html',score=score, Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct' )
             else:
-                #i+=1
-                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message ='Incorrect' )
-            
+            #i+=1
+                return render_template('game.html',score=score, Ans = answers[i],round=roundList[i],img=images[i], message ='Incorrect' )
+        
         elif 'fake' in request.form:
             if answers[i]==False:
-                #i+=1
-                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct' )
+            #i+=1
+                score+=1
+                return render_template('game.html',score=score, Ans = answers[i],round=roundList[i],img=images[i], message = 'Correct' )
             else:
-                #i+=1
-                return render_template('game.html',Ans = answers[i],round=roundList[i],img=images[i], message ='Incorrect' )
-    
-    i+=1    
-    return render_template('game.html',Ans = answers[i], round=roundList[i],img=images[i], message = ' ')
+            #i+=1
+                return render_template('game.html',score=score, Ans = answers[i],round=roundList[i],img=images[i], message ='Incorrect' )
+
+# Click the next button logic
+    if i>=9:
+        i=-1
+        return render_template('gameover.html',score=score)
+    else:
+        i+=1    
+        return render_template('game.html',Ans = answers[i], score=score,round=roundList[i],img=images[i], message = ' ')
 
 
 @app.route('/')
